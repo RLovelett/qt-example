@@ -3,11 +3,7 @@ include(../../application.pri)
 INCLUDEPATH += $$PRJROOT \
                $$PRJROOT/libraries/math
 
-LIBS += -L$$LIBDIR \
+LIBS += -L$$PRJROOT/libraries/math \
         -lmath
 
 SOURCES += first.cpp
-
-# Installation configuration
-#target.path = /tmp/usr/local/bin
-#INSTALLS += target

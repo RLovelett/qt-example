@@ -1,22 +1,2 @@
-CONFIG += debug_and_release
-CONFIG(debug, debug|release) {
-  BUILD_SUFFIX = debug
-  DEFINES += _DEBUG_
-}
-CONFIG(release, debug|release) {
-  BUILD_SUFFIX = release
-  DEFINES += _RELEASE_
-}
-MAKEFILE = Makefile.$$(QMAKESPEC)
 PRJROOT = $$system(pwd)
-PLATFORMNAME = $$(QMAKESPEC)
-PLATFORMDIR = $$PRJROOT/../build/$$(QMAKESPEC)
-
-LIBDIR      = $$PLATFORMDIR/lib/$$BUILD_SUFFIX
-DESTDIR     = $$PLATFORMDIR/lib/$$BUILD_SUFFIX
-DLLDESTDIR  = $$PLATFORMDIR/bin/$$BUILD_SUFFIX
-EXEDIR      = $$PLATFORMDIR/bin/$$BUILD_SUFFIX
-3RDPARTYDIR = $$PRJROOT/libraries/3rdparty
-
-DEFINES += QT_NO_DEBUG QT_CLEAN_NAMESPACE
-DEFINES -= UNICODE
+MAKEFILE = Makefile.$$(QMAKESPEC)

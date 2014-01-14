@@ -9,7 +9,7 @@
 *.a
 *.la
 *.lai
-*.so
+*.so*
 *.dll
 *.dylib
 
@@ -27,3 +27,6 @@ build/
 # QtCreator
 
 *.autosave
+
+# rpmbuild
+*.tar.gz

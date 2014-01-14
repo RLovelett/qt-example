@@ -20,7 +20,9 @@ echo -- PATH set to "$PATH"
 export VERSION_MAJOR=1
 export VERSION_MINOR=0
 export VERSION_REVISION=20
-export VERSION_BUILD=1
+export VERSION_BUILD=$(git log --pretty=format:'%h' -n 1)
+export VERSION_SHORT=${VERSION_MAJOR}${VERSION_MINOR}${VERSION_REVISION}${VERSION_BUILD}
+export VERSION_LONG=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION}.${VERSION_BUILD}
 
 echo -- Major $VERSION_MAJOR
 echo -- Minor $VERSION_MINOR
@@ -28,15 +30,16 @@ echo -- Revision $VERSION_REVISION
 echo -- Build $VERSION_BUILD
 
 # Create a source archive
+git archive --format=tar HEAD | gzip > qt-example-${VERSION_SHORT}-src.tar.gz
 
 # Copy artifacts
-#ARCHIVE=$(find `pwd` -name 'pioneer-*-src.tar.bz2' -type f | head -1)
-#SPEC=$(find `pwd` -name 'pioneer4.spec' -type f | head -1)
-#cp $ARCHIVE $WORKSPACE/SOURCES
-#cp $SPEC $WORKSPACE/SPECS
+ARCHIVE=$(find `pwd` -name 'qt-example-*-src.tar.gz' -type f | head -1)
+SPEC=$(find `pwd` -name 'qt-example.spec' -type f | head -1)
+cp $ARCHIVE $WORKSPACE/SOURCES
+cp $SPEC $WORKSPACE/SPECS
 
 # Change to workspace
-#cd $WORKSPACE
+cd $WORKSPACE
 
 # Make RPM
-#rpmbuild --define "_topdir ${WORKSPACE}" -bb -vv $WORKSPACE/SPECS/pioneer4.spec
+rpmbuild --define "_topdir ${WORKSPACE}" -ba -vv $WORKSPACE/SPECS/qt-example*.spec

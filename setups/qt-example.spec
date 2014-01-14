@@ -31,11 +31,14 @@ qmake -r
 make -f Makefile.$QMAKESPEC all
 
 %install
+INSTALL_ROOT=%{buildroot}/usr make -f Makefile.$QMAKESPEC install
 
 %post
 
 %postun
 
 %files
+%{_bindir}/*
+%{_libdir}/*
 
 %changelog

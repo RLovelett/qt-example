@@ -26,3 +26,8 @@ else {
 }
 
 TEMPLATE = app
+CONFIG += console
+
+# Installation configuration
+target.path = /bin
+INSTALLS += target
